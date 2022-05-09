@@ -8,7 +8,7 @@ HEADERS = ['description', 'neighbourhood', 'latitude', 'longitude', 'type', 'acc
 
 
 class ReviewInfo:
-    def __init__(self, num: int, rating: int, score_a: int, score_b: int, score_c: int, score_d: int):
+    def __init__(self, num: float, rating: float, score_a: float, score_b: float, score_c: float, score_d: float):
         self.num = num
         self.rating = rating
         self.score_a = score_a
@@ -76,12 +76,12 @@ def parse_line(row: List[str]) -> RawData:
     if description == '':
         description = None
 
-    neighbourhood = row[1].strip()
+    neighbourhood = row[1].strip().lower()
     assert neighbourhood != ''
 
     pos = (float(row[2]), float(row[3]))
 
-    types = row[4].strip()
+    types = row[4].strip().lower()
     assert types != ''
 
     accommodates = int(row[5])
@@ -93,10 +93,11 @@ def parse_line(row: List[str]) -> RawData:
     else:
         bedrooms = float(row[7])
 
-    amenities = json.loads(row[8].strip())
+    amenities = json.loads(row[8].strip().lower())
 
     try:
-        review = ReviewInfo(int(row[9]), int(row[10]), int(row[11]), int(row[12]), int(row[13]), int(row[14]))
+        review = ReviewInfo(float(row[9]), float(row[10]), float(row[11]), float(row[12]), float(row[13]),
+                            float(row[14]))
     except ValueError as _e:
         review = None
 
