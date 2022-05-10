@@ -8,8 +8,7 @@ class MatrixData:
     def __init__(self, filename: str, has_header=True, with_normalize=False):
         raw = raw_data.load(filename, has_header)
 
-        # 包含的列: accommodates,bathrooms,bathroom_shared,bedrooms,instant_bookable
-        # 经纬度暂不加入('latitude', 'longitude')
+        # 包含的列: accommodates,bathrooms,bathroom_shared,bedrooms,instant_bookable, (经,纬度)
         self.base = self.__init_base_matrix(raw)
 
         # 包含的列 'reviews', 'review_rating', 'review_scores_A', 'review_scores_B', 'review_scores_C', 'review_scores_D'
@@ -36,13 +35,15 @@ class MatrixData:
 
     @staticmethod
     def __init_base_matrix(raw: List[raw_data.RawData]) -> np.ndarray:
-        ans = np.zeros((len(raw), 5)).astype(np.float64)
+        ans = np.zeros((len(raw), 7)).astype(np.float64)
         for i in range(len(raw)):
             ans[i][0] = float(raw[i].accommodates)
             ans[i][1] = raw[i].bathrooms
             ans[i][2] = raw[i].bathroom_shared
             ans[i][3] = raw[i].bedrooms
             ans[i][4] = raw[i].instant_bookable
+            ans[i][5] = raw[i].pos[0]
+            ans[i][6] = raw[i].pos[1]
         return ans
 
     @staticmethod

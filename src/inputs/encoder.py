@@ -96,7 +96,8 @@ class AmenitiesEncoder:
         else:
             st = self._get_sets()
 
-        self._encoder: CountVectorizer = CountVectorizer(vocabulary=st)
+        # self._encoder: CountVectorizer = CountVectorizer(vocabulary=st)
+        self._encoder: CountVectorizer = CountVectorizer()
         self._encoder.fit(st)
 
     @staticmethod

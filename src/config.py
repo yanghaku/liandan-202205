@@ -1,11 +1,12 @@
 import os.path
+import torch
 
 CACHE_DIR = '../cache'
 
 RAW_DATA_ALL = ["../raw_data/train.csv", "../raw_data/test.csv"]
 
 # the available methods
-METHODS = [
+BASE_MODELS = [
     "svm",
     "sgd",
     "knn",
@@ -13,9 +14,18 @@ METHODS = [
     'bayes',
     'dt',
     'mlp',
+    'rf',
+    'gb',
+    'ab',
+]
+
+METHODS = BASE_MODELS + [
+    'dnn1',
 ]
 
 TEST_OUTPUT_FILENAME = 'test.res.txt'
+
+USE_CUDA = torch.cuda.is_available()
 
 # process to abs path
 BASE_DIR = os.path.split(os.path.realpath(__file__))[0] + '/'
