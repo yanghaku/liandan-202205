@@ -19,7 +19,7 @@ def run(opt):
     if opt.task == task_choices[0]:
         dataset = Dataset(filename=opt.train)
         classifier = create(opt.method, load_pretrained=False, n_features=dataset.data.shape[1], lr=opt.lr,
-                            batch=opt.batch)
+                            batch=opt.batch, n_estimators=opt.estimators)
         train, test = dataset.divide_to_train_test(opt.divide_percent, opt.random)
         classifier.train(train, epoch=opt.epoch, test_data=test, show_pic=opt.show_pic)
         classifier.test(test)
@@ -27,7 +27,7 @@ def run(opt):
     elif opt.task == task_choices[1]:
         dataset = Dataset(filename=opt.train)
         classifier = create(opt.method, load_pretrained=False, n_features=dataset.data.shape[1], lr=opt.lr,
-                            batch=opt.batch)
+                            batch=opt.batch, n_estimators=opt.estimators)
         classifier.train(dataset, save_model=True, epoch=opt.epoch, show_pic=opt.show_pic)
 
     elif opt.task == task_choices[2]:

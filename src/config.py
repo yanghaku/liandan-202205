@@ -21,6 +21,7 @@ BASE_MODELS = [
 
 METHODS = BASE_MODELS + [
     'dnn1',
+    'xgb',
 ]
 
 TEST_OUTPUT_FILENAME = 'test.res.txt'
