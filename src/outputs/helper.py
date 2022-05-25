@@ -13,7 +13,7 @@ def save_res(y_true, filename):
     assert y_true is not None
     assert filename is not None
 
-    with open(filename, "w", encoding='uft-8') as f:
+    with open(filename, "w", encoding='utf-8') as f:
         for i in y_true:
             print(i, file=f)
 

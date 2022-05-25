@@ -31,7 +31,7 @@ USE_CUDA = torch.cuda.is_available()
 # process to abs path
 BASE_DIR = os.path.split(os.path.realpath(__file__))[0] + '/'
 CACHE_DIR = BASE_DIR + CACHE_DIR
-TEST_OUTPUT_FILENAME = BASE_DIR + TEST_OUTPUT_FILENAME
+TEST_OUTPUT_FILENAME = CACHE_DIR + '/' + TEST_OUTPUT_FILENAME
 for i in range(len(RAW_DATA_ALL)):
     RAW_DATA_ALL[i] = BASE_DIR + RAW_DATA_ALL[i]
 

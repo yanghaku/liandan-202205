@@ -15,10 +15,10 @@ class NET(nn.Module):
             nn.Linear(n_feature, 1024),
             nn.Dropout(),
             nn.ReLU(),
-            nn.Linear(1024, 256),
+            nn.Linear(1024, 1024),
             nn.Dropout(p=0.2),
             nn.ReLU(),
-            nn.Linear(256, 64),
+            nn.Linear(1024, 64),
             nn.Dropout(),
             nn.ReLU(),
             nn.Linear(64, 64),
@@ -38,14 +38,13 @@ class DNN1(AbstractClassifier):
     def __init__(self, load_pretrained=False, batch=16, lr=0.001, **kwargs):
         super().__init__()
 
-        if 'n_features' in kwargs:
-            n_features = int(kwargs['n_features'])
-        else:
-            raise TypeError("need 'n_features' in params")
-
         if load_pretrained:
             self._net = torch.load(DNN1_MODEL_PATH)
         else:
+            if 'n_features' in kwargs:
+                n_features = int(kwargs['n_features'])
+            else:
+                raise TypeError("need 'n_features' in params")
             self._net = NET(n_features).double()
 
         self._loss_func = nn.CrossEntropyLoss()

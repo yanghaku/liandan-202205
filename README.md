@@ -14,7 +14,6 @@
     * 'xgb'   (利用xgboost库的梯度提升树)
 
 
-当前 这些方案的f1都在0.3-0.4之间, 目前最好的是梯度提升树(才0.45......)
 ```shell
 $$> python .\src\main.py -m gb --estimators 100
 Namespace(batch=16, divide_percent=0.8, epoch=10, estimators=100, lr=0.001, method='gb',  output='****/project/src/test.res.txt', random=False, show_pic=False, task='metrics', test='****/project/src/../raw_data/test.csv', train='****/project/src/../raw_data/train.csv')
@@ -30,6 +29,7 @@ label distribution: [968, 943, 335, 453, 234, 80]
 predict distribution: [1009, 1312, 15, 381, 244, 52]
 ```
 
+更新, 当前使用多层感知机炼丹, 已成功提升验证集f1到0.46  (虽然也很低)
 ```shell
 $$> python .\src\main.py -m dnn1 -e 200 --lr 0.0005
 Namespace(batch=16, divide_percent=0.8, epoch=200, estimators=100, lr=0.0005, method='dnn1',  output='****/project/src/test.res.txt', random=False, show_pic=False, task='metrics', test='****/project/src/../raw_data/test.csv', train='****/project/src/../raw_data/train.csv')
